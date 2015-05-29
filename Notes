@@ -1,0 +1,25 @@
+
+Program layout:
+    driver -> loads orders,
+              loads inventory,
+              initializes allocator
+    allocator -> iterates over every order, carping on invalid orders,
+                 terminating when orders are exhausted and writing the results
+                 to a stream.
+    
+    Details:
+    1. Ordering invalid items is a catastrophic error; UI should not allow it
+    2. Every order must have a unique header. *Every* order.
+
+argparse usage (new in 2.7, replaces the horrendous optparse module)
+    p = argparse.ArgumentParser(usage="%(prog)s <radius> [args...]",
+                                epilog=METHOD_DESCRIPTION)
+    p.add_argument("radius", type=float)
+    p.add_argument("--width", type=int, default=0, metavar='W')
+    p.add_argument("--height", type=int, default=0, metavar='H')
+    p.add_argument("--method", choices=[METHOD_SIMPLE, METHOD_COMPLEX],
+                   default=METHOD_SIMPLE)
+    args = p.parse_args()
+    r, w, h = args.radius, args.width, args.height
+
+

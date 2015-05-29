@@ -32,6 +32,10 @@ class Inventory(object):
         "Returns a tuple of (item-name, item-amount) for all items"
         return tuple((na,am) for na,am in self._inventory.items())
 
+    def hasStock(self):
+        "Returns whether or not the inventory has anything in stock"
+        return sum(self._inventory.values()) > 0
+
     def order(self, item, amount):
         """Returns a pair of (item-name, ordered-amount) and decreases the
         internal count of items by at most the amount specified. The returned

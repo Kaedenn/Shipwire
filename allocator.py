@@ -79,7 +79,7 @@ class Allocator(object):
 
     def allocate(self):
         order = self.allocateOne()
-        while order is not None:
+        while order is not None and self._inventory.hasStock():
             yield order
             order = self.allocateOne()
 

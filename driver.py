@@ -34,7 +34,7 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser(usage="%(prog)s [options...]", epilog = """
     If omitted, --orders defaults to "./orders.txt" and --inventory defaults
     to "./inventory.txt" """)
-    p.add_argument("--orders", action="append", default=["orders.txt"], metavar="FILE")
+    p.add_argument("--orders", action="append", default=[], metavar="FILE")
     p.add_argument("--inventory", default="inventory.txt", metavar="FILE")
     p.add_argument("-v", "--verbose", action="store_true", help="verbose mode")
     p.add_argument("-d", "--debug", action="store_true", help="debug mode")
@@ -45,6 +45,9 @@ if __name__ == "__main__":
 
     if args.verbose:
         logging.basicConfig(level = logging.INFO)
+
+    if len(args.orders) == 0:
+        args.orders = ["orders.txt"]
 
     logging.debug("Beginning data allocation")
     logging.info("Loading inventory from %s", args.inventory)
@@ -59,3 +62,4 @@ if __name__ == "__main__":
     for allocation in allocator.allocate():
         print allocation.order(), inventory.Inventory.AmountsToString(allocation.allocation())
     logging.debug("Finished allocating orders")
+

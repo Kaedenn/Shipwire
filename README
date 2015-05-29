@@ -1,0 +1,37 @@
+Shipwire Coding Challenge Project: Inventory-to-order allocation program
+
+Author: Peter W Schultz [kaedenn@gmail.com]
+Language: Python
+License: Unlicensed
+
+==== RUNNING THE PROGRAM ====
+
+To generate orders.txt, run Data/datagen.py from the project root directory.
+See datagen.py --help for a description of how to create alternate inventories.
+
+To run the program proper, run ./driver.py from the project root directory. The
+program will scan ./orders.txt and ./inventory.txt (both paths configurable)
+and generate an allocation of items for each order.
+
+In order to digest multiple order files, one would supply the --orders argument
+more than once, designating each file to process.
+
+The program terminates when all product has been ordered and the inventory is
+empty.
+
+Example invocations of driver.py:
+
+python ./driver.py
+python ./driver.py --orders orders1.txt --orders orders2.txt
+python ./driver.py --orders orders1.txt --orders orders2.txt --inventory \
+    inventory.txt
+
+==== INPUT AND OUTPUT FORMATS ====
+
+Orders are to be in valid JSON:
+
+{"Header": 1, "List": [{"Product": "E", "Quantity": 4}, {"Product": "A",
+    "Quantity": 1}]}
+
+where "List" contains at least one product and quantity request, and "Header"
+is a unique integer per stream.

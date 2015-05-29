@@ -35,3 +35,22 @@ Orders are to be in valid JSON:
 
 where "List" contains at least one product and quantity request, and "Header"
 is a unique integer per stream.
+
+Inventories are to be in a K=V comma-separated format.
+
+A=1,B=2,C=3,D=4,E=5
+
+or a newline-separated format
+
+A=1
+B=2
+C=3
+D=4
+E=5
+
+The final outputs of the program are
+
+<stream>:<header> <items requested> <items supplied>
+
+where the items requested and items supplied are in the K=V comma-separated
+format.
